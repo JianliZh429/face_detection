@@ -3,10 +3,10 @@ import cv2
 import sys
 
 
-def detect(src_image, dst_image):
+def detect(src_img, dst_img):
     casc_file = "./haarcascade_frontalface_default.xml"
     face_cascade = cv2.CascadeClassifier(casc_file)
-    image = cv2.imread(src_image)
+    image = cv2.imread(src_img)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     faces = face_cascade.detectMultiScale(
@@ -22,10 +22,8 @@ def detect(src_image, dst_image):
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-    cv2.imwrite(dst_image, image)
-    cv2.imshow("Faces found", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    cv2.imwrite(dst_img, image)
+    return image
 
 
 if __name__ == "__main__":
