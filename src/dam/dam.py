@@ -16,11 +16,10 @@ sock.connect(('192.168.1.232', 10000))
 
 def switcher(signal=True):
     if signal:
-        sock.sendall(bytes(open_relay_array[0]))
+        sock.sendall(bytes(open_relay_array[1]))
     else:
-        sock.sendall(bytes(close_relay_array[0]))
+        sock.sendall(bytes(close_relay_array[1]))
     data = sock.recv(2048)
-    print(data)
     return data
 
 
