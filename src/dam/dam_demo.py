@@ -1,7 +1,7 @@
 import cv2
 
 from src import opencv_detector as detector
-from src.dam.dam import switcher
+from src.dam.dam import switcher, close_connection
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
@@ -22,5 +22,6 @@ if __name__ == "__main__":
         else:
             break
 
+    close_connection()
     cap.release()
     cv2.destroyAllWindows()

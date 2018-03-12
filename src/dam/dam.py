@@ -11,19 +11,18 @@ close_relay_array = [
     [0xFE, 0x05, 0x00, 0x01, 0x00, 0x00, 0x88, 0x05]
 ]
 
+sock.connect(('192.168.1.232', 10000))
+
 
 def switcher(signal=True):
-    try:
-        sock.connect(('192.168.1.232', 10000))
-        if signal:
-            sock.sendall(bytes(open_relay_array[0]))
-        else:
-            sock.sendall(bytes(close_relay_array[0]))
-        data = sock.recv(2048)
-        print(data)
-    finally:
-        sock.close()
+    if signal:
+        sock.sendall(bytes(open_relay_array[0]))
+    else:
+        sock.sendall(bytes(close_relay_array[0]))
+    data = sock.recv(2048)
+    print(data)
+    return data
 
-    return sock.recv(2048)
 
-switcher()
+def close_connection():
+    sock.close()
