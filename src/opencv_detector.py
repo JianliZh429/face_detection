@@ -1,6 +1,6 @@
 import cv2
 
-face_cascade = cv2.CascadeClassifier("./resources/haarcascade_frontalface_default.xml")
+face_cascade = cv2.CascadeClassifier("../../resources/haarcascade_frontalface_default.xml")
 
 
 def detect(frame):

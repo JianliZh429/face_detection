@@ -15,12 +15,14 @@ sock.connect(('192.168.1.232', 10000))
 
 
 def switcher(signal=True):
+    print('send modbus data')
     if signal:
-        sock.sendall(bytes(open_relay_array[1]))
+        send_modbus_data = bytes(open_relay_array[0])
     else:
-        sock.sendall(bytes(close_relay_array[1]))
+        send_modbus_data = bytes(close_relay_array[0])
+    sock.sendall(send_modbus_data)
     data = sock.recv(2048)
-    return data
+    return data == send_modbus_data
 
 
 def close_connection():

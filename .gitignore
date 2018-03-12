@@ -4,3 +4,5 @@
 *.pyc
 *.avi
 *.log
+venv
+virtualenv
