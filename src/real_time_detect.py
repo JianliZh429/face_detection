@@ -58,3 +58,5 @@ def detect(video_file=None, save_image=False, prefix='detected', quiet=False):
     cap.release()
     if not quiet:
         cv2.destroyAllWindows()
+
+detect()

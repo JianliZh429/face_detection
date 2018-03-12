@@ -13,21 +13,29 @@ class VideoWriter:
         self.out.release()
 
 
+def build_filename(count=0):
+    dynamic_part = "{0:08}".format(count)
+    return '{}_{}.jpg'.format('me', dynamic_part)
+
+
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
     # Define the codec and create VideoWriter object
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    out = cv2.VideoWriter('outputeee.avi', fourcc, 20.0, (640, 480))
-
-    while (cap.isOpened()):
+    # fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    # out = cv2.VideoWriter('output.avi', fourcc, 20.0)
+    count = 0
+    while cap.isOpened():
         ret, frame = cap.read()
-        if ret == True:
-            frame = cv2.flip(frame, 0)
+        if ret:
+            # frame = cv2.flip(frame, 0)
 
             # write the flipped frame
-            frame = cv2.resize(frame, (640, 480))
-            out.write(frame)
+            # frame = cv2.resize(frame, (640, 480))
+            # out.write(frame)
+            filename = build_filename(count)
+            cv2.imwrite(filename, frame)
 
+            count += 1
             cv2.imshow('frame', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -36,5 +44,5 @@ if __name__ == "__main__":
 
     # Release everything if job is finished
     cap.release()
-    out.release()
+    # out.release()
     cv2.destroyAllWindows()

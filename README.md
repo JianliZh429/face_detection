@@ -20,3 +20,6 @@ python detect.py src_image.jpg detected.jpg
 ```
 python detect.py $PATH_to_VIDEO_FILE -i -p detected
 ```
+```
+python main.py $PATH_to_VIDEO_FILE -i -p detected
+```
